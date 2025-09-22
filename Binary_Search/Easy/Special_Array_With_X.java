@@ -5,13 +5,23 @@ import java.util.Arrays;
 public class Special_Array_With_X {
     public int specialArray(int[] nums) {
         Arrays.sort(nums);
-        int n=nums.length;
-        int prev = -1;
-        for(int i=0;i<nums.length;i++){
-            if(n-i <=nums[i] && n-i>prev){
-                return n-i;
+        int n = nums.length;
+        for(int i=0;i<=n;i++){
+            int left = 0;
+            int right = nums.length;
+
+            while(left<right){
+                int mid = left+(right - left) /2;
+
+                if(nums[mid] < i){
+                    left=mid +1;
+                }else{
+                    right = mid;
+                }
             }
-            prev = nums[i];
+            if (n-left == i){
+                return i;
+            }
         }
         return -1;
     }
